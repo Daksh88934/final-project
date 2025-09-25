@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sasyanex - Smart Farming Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+</head>
+<body>
+    <!-- Div 1 - Navigation Bar -->
+    <nav class="navbar">
+        <div style="height: 100%; display: flex; gap: 50px; position: relative; left: 1%; bottom: 5px;">
+        <img style="height: 90px; width: 90px; position: relative; left: 10%;" src="/logo.png" alt="">
+        <div style="position: relative; font-size: 50px;" class="logo">Sasyanex</div>
+        </div>
+        <div class="nav-buttons">
+            <button id="loginBtn" class="nav-btn login-btn" onclick="openModal()">Login</button>
+            <!-- Change this button text from Guide to Feature -->
+            <button class="nav-btn">Feature</button>
+            <button class="nav-btn" onclick="openChatBox()">Connect with Bot</button>
+            <button class="nav-btn" onclick="micRegister()">🎤 Register with Mic</button>
+            <button class="nav-btn">Contact
+                <a href="advisory2.html" style="text-decoration:none;color:inherit;"></a>
+            </button>
+            <div class="dropdown">
+                <button class="nav-btn">Language ▼</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="changeLanguage('en')">English</a>
+                    <a href="#" onclick="changeLanguage('hi')">हिंदी</a>
+                    <a href="#" onclick="changeLanguage('te')">తెలుగు</a>
+                    <a href="#" onclick="changeLanguage('ta')">தமிழ்</a>
+                    <a href="#" onclick="changeLanguage('pa')">ਪੰਜਾਬੀ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Div 2 - News Ticker -->
+    <div class="news-ticker">
+        <div class="ticker-content" id="newsTicker">
+            🌾 Breaking: New subsidies announced for organic farming • 🚜 Modern farming techniques increase crop yield by 40% • 💧 Drip irrigation schemes launched in 5 states • 🌱 Weather alert: Heavy rains expected in North India next week • 📈 Market prices for wheat touch new highs • 🏛️ Government launches digital farming portal for farmers
+        </div>
+    </div>
+
+    <!-- Div 3 - Gallery Section -->
+    <div class="gallery-section">
+        <div class="slideshow-container">
+            <div class="slide slide1 active">
+                <div class="slide-overlay">
+                    <div class="slidercontent">
+                    <div class="slide-title">Modern Farming Techniques</div>
+                    <p>Embracing technology for better crop yields</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide slide2">
+                <div class="slide-overlay">
+                    <div class="slidercontent">
+                    <div class="slide-title">Smart Irrigation Systems</div>
+                    <p>Water conservation through innovative methods</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide slide3">
+                <div class="slide-overlay">
+                    <div class="slidercontent">
+                    <div class="slide-title">Sustainable Agriculture</div>
+                    <p>Building a greener future for farming</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Div 4 - Helper Section + Weather & Crop Recommendation -->
+    <div class="helper-section">
+    <h2 id="sectionTitle" class="section-title">Smart Farming Assistant</h2>
+    <button id="detectBtn" class="detect-location-btn" onclick="detectLocation()">📍 Detect My Location</button>
+
+    <div class="info-grid">
+        <div class="info-card weather-info">
+            <div id="weatherTitle" class="card-title">Weather In Your Area</div>
+            <div id="weatherData">
+                <p>Click "Detect Location" to get weather alerts for your area</p>
+                <div class="weather-panel">
+                    <div class="weather-panel-title">Weather Prediction</div>
+                    <div class="weather-grid hidden" id="weatherGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card alerts-card" id="alertsCard">
+            <div id="alertsTitle" class="card-title">⚠️ Alerts</div>
+            <div id="officialAlerts"><p>No alerts yet.</p></div>
+        </div>
+
+        <div class="info-card crop-recommendation">
+            <div id="recTitle" class="card-title">Recommendations</div>
+            <div id="cropData">
+                <div class="hidden" id="cropRecommendations"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- link your JS file -->
+<!-- Removed wrong js/ path; loaded correctly at the end of body -->
+
+                        <!-- Crop recommendations will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card farming-methods">
+                <div class="card-title">🚜 Modern Farming Methods</div>
+                <div id="farmingMethods">
+                    <ul>
+                        <li><strong>Precision Agriculture:</strong> GPS-guided farming equipment</li>
+                        <li><strong>Drip Irrigation:</strong> Water-efficient irrigation systems</li>
+                        <li><strong>Organic Farming:</strong> Chemical-free crop production</li>
+                        <li><strong>Vertical Farming:</strong> Space-efficient growing techniques</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Div 5 - Government Schemes & Policies -->
+    <div class="schemes-section">
+        <h2 id="schemesTitle" class="schemes-title">Government Schemes & Policies</h2>
+        <div class="schemes-slider-container">
+            <div class="schemes-slider" id="schemesSlider" onmouseenter="this.style.cursor='grab'" onmousedown="this.style.cursor='grabbing'" onmouseup="this.style.cursor='grab'">
+                <div class="scheme-card">
+                    <div class="scheme-category">Farmers</div>
+                    <div class="scheme-title">PM-KISAN Scheme</div>
+                    <p>Direct income support of ₹6000 per year to farmer families. Benefits transferred directly to bank accounts in three installments.</p>
+                </div>
+                <div class="scheme-card">
+                    <div class="scheme-category">Labour</div>
+                    <div class="scheme-title">MGNREGA</div>
+                    <p>Guaranteed employment for 100 days per year for rural households. Wages increased to ₹350 per day in most states.</p>
+                </div>
+                <div class="scheme-card">
+                    <div class="scheme-category">Fertilizer Suppliers</div>
+                    <div class="scheme-title">Fertilizer Subsidy</div>
+                    <p>Government provides subsidies on DAP, MOP, and other fertilizers to ensure affordable prices for farmers.</p>
+                </div>
+                <div class="scheme-card">
+                    <div class="scheme-category">General</div>
+                    <div class="scheme-title">Crop Insurance</div>
+                    <p>Pradhan Mantri Fasal Bima Yojana provides crop insurance coverage against natural disasters and pest attacks.</p>
+                </div>
+                <div class="scheme-card">
+                    <div class="scheme-category">Farmers</div>
+                    <div class="scheme-title">Organic Farming</div>
+                    <p>Paramparagat Krishi Vikas Yojana promotes organic farming practices with financial assistance of ₹50,000 per hectare.</p>
+                </div>
+                <div class="scheme-card">
+                    <div class="scheme-category">Labour</div>
+                    <div class="scheme-title">Skill Development</div>
+                    <p>Agricultural skill development programs to train farmers and laborers in modern farming techniques and machinery operation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Div 6 - Feature Section -->
+    <div class="feature-section">
+        <h2 id="featuresTitle" class="section-title">Our Features</h2>
+        <div class="feature-grid">
+            <div class="feature-box" onclick="location.href='advisory2.html'">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Advisory</div>
+                <a href="advisory2.html" style="text-decoration:none;color:inherit;"><p>Get crop-specific advice based on weather and soil data</p></a>
+                <p>Get expert farming advice and consultations</p>
+            </div>
+            <div class="feature-box" onclick="location.href='advisory1.html'">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Market Price</div>
+                <a href="advisory1.html" style="text-decoration:none;color:inherit;"> <p>Real-time crop prices and market trends</p></a>
+               
+            </div>
+            <div class="feature-box" onclick="alert('Chatbot feature coming soon!')">
+                <div class="feature-icon">🤖</div>
+                <div class="feature-title">Chatbot</div>
+                <p>24/7 AI assistant for farming queries</p>
+            </div>
+            <div class="feature-box" onclick="alert('Soil Monitoring feature coming soon!')">
+                <div class="feature-icon">🧪</div>
+                <div class="feature-title">Soil Monitoring</div>
+                <p>Track soil moisture, pH, and nutrients</p>
+            </div>
+            <div class="feature-box" onclick="openFeedback()">
+                <div class="feature-icon">📝</div>
+                <div class="feature-title">Feedback</div>
+                <p>Share your experience and suggestions</p>
+            </div>
+            <div class="feature-box" onclick="location.href='advisory3.html'">
+                <div class="feature-icon">🤝</div>
+                <div class="feature-title">NGOs</div>
+                <p>Connect with agricultural NGOs and support</p>
+            </div>
+            <div class="feature-box" onclick="alert('IoT Tutorial feature coming soon!')">
+                <div class="feature-icon">📡</div>
+                <div class="feature-title">IoT Tutorial</div>
+                <p>Learn smart farming with IoT devices</p>
+            </div>
+            <div class="feature-box" onclick="openCamera()">
+                <div class="feature-icon">📷</div>
+                <div class="feature-title">Pest Detection Camera</div>
+                <p>Scan your crop or soil with camera and get instant pest/disease info</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <!-- Left Side - Register as Farmer -->
+            <div class="form-side left">
+                <div class="form-title">Register as Farmer</div>
+                <form id="farmerForm">
+                    <div class="form-group">
+                        <label for="farmerName">Name:</label>
+                        <input type="text" id="farmerName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="farmerPhone">Phone:</label>
+                        <input type="tel" id="farmerPhone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="farmerLocation">Location:</label>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <input type="text" id="farmerLocation" name="location" required style="flex:1;">
+                            <button type="button" onclick="autofillLocation('farmerLocation')" class="submit-btn" style="width:auto;padding:0.6rem 0.8rem;">📍</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Register as Farmer</button>
+                </form>
+            </div>
+            
+            <!-- Right Side - Register as Helper -->
+            <div class="form-side">
+                <div class="form-title">Register as Helper</div>
+                <form id="helperForm">
+                    <div class="form-group">
+                        <label for="helperName">Name:</label>
+                        <input type="text" id="helperName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="helperPhone">Phone:</label>
+                        <input type="tel" id="helperPhone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="helperLocation">Location:</label>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <input type="text" id="helperLocation" name="location" required style="flex:1;">
+                            <button type="button" onclick="autofillLocation('helperLocation')" class="submit-btn" style="width:auto;padding:0.6rem 0.8rem;">📍</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="helperType">Helper Type:</label>
+                        <select id="helperType" name="helperType" required>
+                            <option value="">Select Type</option>
+                            <option value="labour">Register as Labour</option>
+                            <option value="shopkeeper">Register as Shopkeeper</option>
+                            <option value="supplier">Register as Supplier</option>
+                            <option value="other">Register as Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Register as Helper</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal" style="display:none;">
+        <div class="modal-content" style="max-width:600px;margin:5% 5% 5% auto;">
+            <span class="close" onclick="closeFeedback()">&times;</span>
+            <div class="form-side" style="width:100%">
+                <div class="form-title">Share your Feedback</div>
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="fbName">Name (optional):</label>
+                        <input type="text" id="fbName" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="fbPhone">Phone (optional):</label>
+                        <input type="tel" id="fbPhone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="fbMessage">Your feedback / complaint:</label>
+                        <textarea id="fbMessage" name="message" required style="width:100%;min-height:120px;padding:1rem;border:2px solid #ddd;border-radius:10px;font-size:1rem;"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" style="width:auto;padding:0.8rem 1.2rem;">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Place this just above your chat-float-btn div -->
+    <div id="mic-float-btn" style="position:fixed;bottom:110px;right:24px;z-index:9999;">
+        <button onclick="startMic()" style="background:#ff9800;color:#fff;border:none;border-radius:12px;width:56px;height:44px;box-shadow:0 4px 16px rgba(0,0,0,0.2);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+            <i class="fa-solid fa-microphone"></i>
+        </button>
+    </div>
+    <!-- Floating Chat Button -->
+    <div id="chat-float-btn" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
+        <button onclick="openChatBox()" style="background:#4caf50;color:#fff;border:none;border-radius:12px;width:56px;height:44px;box-shadow:0 4px 16px rgba(0,0,0,0.2);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- Friendly Farmer Chat Launcher (animated pop) -->
+    <div id="chat-launcher"  style="position:fixed;bottom:40px;right:24px;z-index:9999;display:flex;align-items:center;gap:10px;">
+        <div class="speech-bubble" style="background:#e3f2fd;border:1px solid #90caf9;color:#0d47a1;padding:8px 12px;border-radius:14px;box-shadow:0 6px 16px rgba(13,71,161,0.15);font-size:0.95rem;">
+            I’m here to assist you
+        </div>
+        <div class="farmer-avatar" style="position: relative; width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#81c784,#4caf50);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,0.2);">
+            <span style="font-size:1.6rem; position: relative;">👨‍🌾</span>
+        </div>
+    </div>
+
+    <!-- Chat Box UI (replace your existing chat-box div with this) -->
+    <div id="chat-box" style="display:none;position:fixed;bottom:100px;right:32px;width:520px;max-width:98vw;height:50vh;background:#ffffff;border-radius:16px;box-shadow:0 12px 32px rgba(0,0,0,0.25);z-index:9999;">
+        <div style="padding:12px 16px;border-bottom:1px solid #e0e0e0;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#2d5a2d,#4a8a4a);color:#fff;">
+            <span style="font-weight:600;display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-seedling"></i> Farming Assistant</span>
+            <div style="display:flex;gap:8px;">
+                <button onclick="closeChatBox()" title="Back" style="background:#eee;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:0.95rem;">← Back</button>
+                <button onclick="closeChatBox()" title="Close" style="background:none;border:none;font-size:1.5rem;cursor:pointer;">×</button>
+        </div>
+        </div>
+        <div id="chat-messages" style="flex:1;min-height:0;overflow-y:auto;padding:10px 16px;font-size:1rem;background:#fafafa;"></div>
+        <div style="padding:10px 12px;display:flex;gap:8px;align-items:flex-end;border-top:1px solid #eee;background:#fff;">
+            <input id="chat-input" type="text" placeholder="Ask anything about farming..." style="flex:1;padding:12px;border-radius:10px;border:1px solid #ccc;font-size:1.1rem;">
+            <input id="chat-file" type="file" accept="image/*,video/*" style="display:none" onchange="attachFile(this)">
+            <button onclick="sendChat()" style="background:#4caf50;color:#fff;border:none;border-radius:10px;padding:12px 24px;cursor:pointer;font-size:1.1rem;">Send</button>
+            <!-- Mic, Camera, Attach beside input -->
+            <div style="display:flex;flex-direction:row;gap:8px;align-items:center;">
+                <button onclick="startChatMic()" title="Voice Input" style="background:#eee;border:none;border-radius:10px;width:48px;height:44px;font-size:1.1rem;display:flex;align-items:center;justify-content:center;">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <button onclick="openCamera()" title="Camera" style="background:#eee;border:none;border-radius:10px;width:48px;height:44px;font-size:1.1rem;display:flex;align-items:center;justify-content:center;">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+                <button onclick="document.getElementById('chat-file').click()" title="Attach" style="background:#eee;border:none;border-radius:10px;width:48px;height:44px;font-size:1.1rem;display:flex;align-items:center;justify-content:center;">
+                    <i class="fa-solid fa-paperclip"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Modal (hidden by default) -->
+    <div id="camera-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:10000;align-items:center;justify-content:center;">
+        <div style="background:#fff;padding:16px;border-radius:16px;max-width:90vw;">
+            <video id="camera-stream" autoplay style="width:300px;height:200px;border-radius:8px;"></video>
+            <br>
+            <button onclick="takePhoto()" style="margin-top:8px;background:#4caf50;color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;">Capture</button>
+            <button onclick="closeCamera()" style="margin-top:8px;background:#eee;color:#333;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;">Close</button>
+        </div>
+    </div>
+
+    <!-- Menu Bar Button (Top Left) -->
+    <div id="menu-bar-btn" style="position:fixed;top:24px;left:24px;z-index:9999;">
+        <button onclick="openMenuBar()" style="background:#4caf50;color:#fff;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 4px 16px rgba(0,0,0,0.2);font-size:1.8rem;cursor:pointer;">☰</button>
+    </div>
+
+    <!-- Menu Bar Sidebar -->
+    <div id="menu-bar" style="display:none;position:fixed;top:0;left:0;width:340px;max-width:98vw;height:100vh;background:#fff;box-shadow:2px 0 24px rgba(0,0,0,0.2);z-index:10000;flex-direction:column;">
+       <!-- Smaller close (cross) button -->
+       <button id="menu-close-btn" onclick="closeMenuBar()" aria-label="Close menu" title="Close menu"
+               style="position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.08);color:#333;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+           ×
+       </button>
+       <div style="width: 340px; height: 100px; background: linear-gradient(135deg, #75d575 0%, rgb(3, 57, 23) 100%); display: flex; align-items: center; justify-content: center; gap: 32px; padding-right: 36px;">
+<img style="height: 90px; width: 90px; position: relative; left: 10%;" src="/logo.png" alt="">
+        <div style="position: relative; font-size: 50px;" class="logo">Sasyanex</div>
+       </div>
+        <div id="menu-features" style="flex:1;padding:16px;overflow-y:auto;max-height:calc(100vh - 180px);">
+            <!-- Features/buttons will be populated by JS -->
+        </div>
+        <div id="menu-user" style="padding:16px;border-top:1px solid #eee;margin-top:auto;font-size:14px;line-height:1.3;">
+            <!-- User details, sign in/up, logout will be populated by JS -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- JS files ko end mein include karo -->
+    <script src="main.js"></script>
+    <script src="weather-ui.js"></script>
+    <script src="weather-api.js"></script>
+    <script src="weather.js"></script>
+    <script src="crop.js"></script>
+    <script src="chat.js"></script>
+    <script src="forms.js"></script>
+    <!-- Removed invalid script tags pointing to HTML files -->
+        
+
+        
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-wrap">
+            <div class="footer-col">
+                <h4>Sasyanex</h4>
+                <p>Smart farming assistant for real-time weather, alerts and recommendations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ <a href="mailto:hello@sasyanex.com">hello@sasyanex.com</a></p>
+                <p>🔗 <a href="https://sasyanex.com" target="_blank" rel="noopener">sasyanex.com</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow us</h4>
+                <div class="socials">
+                    <a href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Feedback</h4>
+                <p>We value your experience and suggestions.</p>
+                <button onclick="openFeedback()" style="background:#4caf50;color:#fff;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;">Open Feedback Form</button>
+            </div>
+            
+        </div>
+        <div class="footer-bottom">© <span id="yr"></span> Sasyanex. All rights reserved.</div>
+        
+    </footer>
+    
+</body>
+</html>

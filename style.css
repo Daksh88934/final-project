@@ -1,0 +1,6 @@
+#chat-float-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 120px; 
+    z-index: 1000;
+}
