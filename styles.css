@@ -1,0 +1,799 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+    overflow-x: hidden;
+}
+
+/* Div 1 - Navigation Bar */
+.navbar {
+    background: linear-gradient(135deg, #75d575 0%, rgb(3, 57, 23) 100%);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-btn, .dropdown {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nav-btn:hover, .dropdown:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.login-btn {
+    background: #ff6b35;
+    border-color: #ff6b35;
+}
+
+.login-btn:hover {
+    background: #ff5722;
+    transform: scale(1.05);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.slidercontent{
+    position: relative;
+    top: 85%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    top: 100%;
+    right: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #2d5a2d;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 10px;
+}
+
+.dropdown-content a:hover {
+    background: #f1f1f1;
+}
+
+/* Div 2 - News Ticker */
+.news-ticker {
+    border-bottom: 4px solid white;
+    background: #93c057;
+    color: white;
+    padding: 0.8rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    border-top: 3px solid #4caf50;
+}
+
+.ticker-content {
+    display: inline-block;
+    animation: scroll-left 45s linear infinite;
+    padding-left: 100%;
+    font-size: 1.1rem;
+}
+
+@keyframes scroll-left {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Div 3 - Gallery Section */
+.gallery-section {
+    height: 500px;
+    background: linear-gradient(45deg, #8bc34a, #4caf50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.slideshow-container {
+    height: 100%;
+    width: 100%;
+    max-width: none;
+    position: relative;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.slide {
+    height: 100%;
+    display: none;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.slide.active {
+    height: 100%;
+    display: block;
+}
+
+.slide1 { height: 100%; background-image: url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2094&q=80'); }
+.slide2 { height: 100%; background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80'); }
+.slide3 { height: 100%; background-image: url('https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); }
+
+.slide-overlay {
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.slide-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Div 4 - Helper Section + Weather & Crop Recommendation */
+.helper-section {
+    padding: 4rem 2rem;
+    background: white;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #2d5a2d;
+    margin-bottom: 3rem;
+    font-weight: bold;
+}
+
+.detect-location-btn {
+    background: linear-gradient(135deg, #ff6b35, #ff8a65);
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 2rem auto;
+    display: block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+}
+
+.detect-location-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255,107,53,0.5);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+}
+
+/* Make Weather and Alerts take half width each on larger screens */
+@media (min-width: 900px) {
+    .helper-section .info-grid { grid-template-columns: 1fr 1fr; }
+    .helper-section .info-card.weather-info { grid-column: auto; }
+    .helper-section .info-card.alerts-card { grid-column: auto; }
+}
+
+.info-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border-left: 5px solid #4caf50;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.weather-info {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+/* Weather panel styled like your mock */
+.weather-panel {
+    background: linear-gradient(180deg,#e0e0e0,#c7c7c7);
+    border-radius: 28px;
+    padding: 22px 22px 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), 0 18px 40px rgba(0,0,0,0.12);
+    max-width: 680px;
+    margin: 0 auto;
+}
+.weather-panel-title {
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.crop-recommendation {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+}
+
+/* Alerts card styling */
+.alerts-card {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border-left-color: #fb8c00;
+}
+
+/* Make recommendations card full width below the first row */
+.crop-recommendation {
+    grid-column: 1 / -1;
+}
+
+.farming-methods {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2d5a2d;
+    margin-bottom: 1rem;
+}
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 22px 26px;
+    margin-top: 12px;
+    justify-items: center;
+}
+/* Place name under weather metrics */
+.weather-place {
+    margin-top: 10px;
+    text-align: center;
+    color: #2d5a2d;
+    font-weight: 600;
+}
+
+/* 2x2 layout on medium screens for balanced look */
+@media (max-width: 900px) {
+    .weather-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+}
+
+/* Weather metric variants for colorful UI */
+.metric-tile.variant-temp { background: linear-gradient(135deg,#fff,#ffece0); border-color: rgba(255,134,64,0.35); }
+.metric-tile.variant-humidity { background: linear-gradient(135deg,#fff,#e8f3ff); border-color: rgba(66,133,244,0.35); }
+.metric-tile.variant-wind { background: linear-gradient(135deg,#fff,#eaf7ff); border-color: rgba(0,184,212,0.35); }
+.metric-tile.variant-rain { background: linear-gradient(135deg,#fff,#e9f7ef); border-color: rgba(76,175,80,0.35); }
+
+.metric-tile .metric-value { font-weight: 700; font-size: 1.1rem; margin-top: 4px; color: #1b5e20; }
+.metric-tile .metric-label { color: #445; opacity: 0.9; }
+
+.day-weather {
+    background: rgba(255,255,255,0.3);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Metric tiles inside weather card */
+.metric-tile {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
+    padding: 16px 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 140px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    animation: fade-in 400ms ease-in-out;
+}
+.metric-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    margin-bottom: 10px;
+}
+.variant-temp .metric-icon-circle { background: linear-gradient(135deg,#ffd7c2,#ffba94); }
+.variant-humidity .metric-icon-circle { background: linear-gradient(135deg,#cfe5ff,#a8ccff); }
+.variant-wind .metric-icon-circle { background: linear-gradient(135deg,#d9f6ff,#a7e9f7); }
+.variant-rain .metric-icon-circle { background: linear-gradient(135deg,#d9f6e3,#b7efc0); }
+
+.metric-icon { font-size: 1.4rem; }
+.metric-tile .metric-value { font-weight: 700; font-size: 1.05rem; margin-top: 2px; color: #1b5e20; }
+.metric-tile .metric-label { color: #445; opacity: 0.9; font-size: 0.92rem; }
+.metric-tile .metric-label { color: #666; font-size: 0.9rem; margin-top: 4px; }
+.metric-tile .metric-value { font-weight: 600; font-size: 1.05rem; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
+
+/* ——— Weather card look & animation like wheather.html, without changing layout ——— */
+/* Hover lift similar to wheather.html cards */
+.weather-grid .metric-tile {
+    background: #f0f4ff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: none;
+    transition: transform 0.3s ease;
+}
+.weather-grid .metric-tile:hover {
+    transform: scale(1.05);
+}
+
+/* Bigger icon and floating animation like wheather.html */
+.weather-grid .metric-icon {
+    font-size: 2.5rem;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* Label/value typography closer to wheather.html */
+.weather-grid .metric-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+.weather-grid .metric-value {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Animated appearance for tiles with stagger via --d index */
+.metric-tile.anim {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    animation: tile-pop 450ms cubic-bezier(.2,.8,.2,1) forwards;
+    animation-delay: calc(var(--d, 0) * 80ms);
+}
+/* Bigger, animated metric icon */
+.metric-icon {
+    font-size: 2rem;
+    display: inline-block;
+    transform-origin: center;
+    animation: icon-bob 1000ms ease-out both;
+    animation-delay: calc(var(--d, 0) * 120ms);
+}
+@keyframes icon-bob {
+    0%   { transform: translateY(-6px) scale(0.9); opacity: 0; }
+    40%  { transform: translateY(0) scale(1.05); opacity: 1; }
+    70%  { transform: translateY(-2px) scale(1.0); }
+    100% { transform: translateY(0) scale(1.0); }
+}
+@keyframes tile-pop {
+    0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+    60% { opacity: 1; transform: translateY(0) scale(1.01); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Detected glow around weather card */
+.weather-detected {
+    box-shadow: 0 0 0 0 rgba(76,175,80,0.35);
+    animation: pulse-glow 1400ms ease-out 1;
+}
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(76,175,80,0.0); }
+    50% { box-shadow: 0 0 0 12px rgba(76,175,80,0.18); }
+    100% { box-shadow: 0 0 0 0 rgba(76,175,80,0.0); }
+}
+
+/* Alert chips */
+.alert-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #ffebee;
+    color: #b71c1c;
+    border: 1px solid #ffcdd2;
+    margin: 6px 6px 0 0;
+    font-size: 0.95rem;
+    animation: fade-in 300ms ease-in-out;
+}
+
+/* Recommendation chips */
+.rec-chip {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(76, 175, 80, 0.08);
+    color: #1b5e20;
+    border: 1px solid rgba(76,175,80,0.25);
+    margin: 6px 6px 0 0;
+    font-size: 0.95rem;
+    animation: fade-in 300ms ease-in-out;
+}
+
+/* Weather dashboard styles (scoped to weather card) */
+.info-card.weather-info .dashboard {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 480px; /* increased from 400px */
+    max-width: 100%;
+    animation: fadeIn 1.5s ease-in-out;
+    margin: 10px 0 0 0; /* left align inside card */
+    justify-items: start; /* left align cards */
+}
+.info-card.weather-info .dashboard .card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #f0f4ff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.info-card.weather-info .dashboard .card:hover { transform: scale(1.05); }
+.info-card.weather-info .dashboard .icon { font-size: 2.5rem; animation: float 2s ease-in-out infinite; }
+.info-card.weather-info .dashboard .card:nth-child(1) .icon { color: #ff9800; }
+.info-card.weather-info .dashboard .card:nth-child(2) .icon { color: #1e88e5; }
+.info-card.weather-info .dashboard .card:nth-child(3) .icon { color: #00acc1; }
+.info-card.weather-info .dashboard .card:nth-child(4) .icon { color: #43a047; }
+.info-card.weather-info .dashboard .info { display: flex; flex-direction: column; }
+.info-card.weather-info .dashboard .label { font-weight: bold; font-size: 1rem; color: #333; }
+.info-card.weather-info .dashboard .value { font-size: 1.2rem; color: #555; }
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Slight left shift for Humidity (2) and Condition (4) cards */
+.info-card.weather-info .dashboard .card:nth-child(2),
+.info-card.weather-info .dashboard .card:nth-child(4) {
+    transform: translateX(-6px);
+}
+.info-card.weather-info .dashboard .card:nth-child(2):hover,
+.info-card.weather-info .dashboard .card:nth-child(4):hover {
+    transform: translateX(-6px) scale(1.05);
+}
+
+/* Launcher animation */
+@keyframes pop-in { 0% { opacity:0; transform: translateY(10px) scale(0.95);} 100% { opacity:1; transform: translateY(0) scale(1);} }
+
+/* Div 5 - Government Schemes & Policies */
+.schemes-section {
+    background: linear-gradient(135deg, #2d5a2d, #1a4a1a);
+    padding: 4rem 2rem;
+    color: white;
+    overflow: hidden;
+}
+
+.schemes-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: white;
+}
+
+.schemes-slider-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+}
+.schemes-slider-container::-webkit-scrollbar { display: none; }
+
+.schemes-slider {
+    display: flex;
+    animation: slide-schemes 40s linear infinite;
+    gap: 2rem;
+}
+
+/* Pause auto-slide when hovered so user can interact */
+.schemes-slider:hover {
+    animation-play-state: paused;
+}
+
+.scheme-card {
+    min-width: 350px;
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.3s ease;
+}
+
+.scheme-card:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.15);
+}
+
+@keyframes slide-schemes {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+.scheme-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #4caf50;
+}
+
+.scheme-category {
+    background: #4caf50;
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* Div 6 - Feature Section */
+.feature-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(45deg, #e8f5e8, #f0f8f0);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-box {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+    border-color: #4caf50;
+    box-shadow: 0 12px 40px rgba(76,175,80,0.3);
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #4caf50;
+}
+
+.feature-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2d5a2d;
+    margin-bottom: 0.5rem;
+}
+
+/* Login Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.form-side {
+    flex: 1;
+    padding: 3rem;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.form-side.left {
+    border-right: 2px solid #e0e0e0;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2d5a2d;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #4caf50;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76,175,80,0.4);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .modal-content {
+        flex-direction: column;
+    }
+
+    .form-side {
+        border-right: none;
+        border-bottom: 2px solid #e0e0e0;
+    }
+
+    .schemes-slider {
+        animation: slide-schemes 60s linear infinite;
+    }
+
+    .scheme-card {
+        min-width: 280px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+.site-footer {
+    background: linear-gradient(135deg, #2d5a2d, #1a4a1a);
+    color: #fff;
+    padding: 2rem 1.5rem;
+    margin-top: 3rem;
+}
+.footer-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem 2rem;
+    align-items: start;
+}
+.footer-col h4 { margin-bottom: 0.6rem; color: #a5d6a7; line-height: 1.2; }
+.footer-col p { margin: 4px 0; line-height: 1.4; overflow-wrap: anywhere; word-break: break-word; }
+.footer-col a { color: #e8f5e9; text-decoration: none; display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
+.footer-col a:hover { text-decoration: underline; }
+.socials { display: flex; gap: 12px; margin-top: 8px; }
+.socials a { background: rgba(255,255,255,0.12); padding: 8px 10px; border-radius: 8px; font-size: 0.95rem; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); margin-top: 1.2rem; padding-top: 1rem; font-size: 0.95rem; text-align: center; color: #c8e6c9; }
+@media (max-width: 480px) {
+    .footer-col h4 { font-size: 1rem; }
+    .footer-col, .footer-col p, .footer-col a { font-size: 0.95rem; }
+}

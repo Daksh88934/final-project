@@ -1,0 +1,314 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Market Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 30px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2em;
+      color: #2c3e50;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.4em;
+      color: #34495e;
+    }
+
+    .price {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #27ae60;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      font-size: 0.95em;
+      margin-bottom: 6px;
+    }
+
+    .price-change {
+      font-size: 0.95em;
+      font-weight: bold;
+      color: #2980b9;
+      margin-top: 10px;
+    }
+
+    .link {
+      margin-top: 10px;
+      display: inline-block;
+      font-size: 0.9em;
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    .section {
+      margin-top: 50px;
+    }
+
+    .section h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .section li {
+      background: #fff;
+      padding: 10px 15px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .slider-section {
+    margin-top: 60px;
+    text-align: center;
+    /* height: 10vh; */
+  }
+
+  .slider-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+
+  .slider-container {
+    max-height: 350px;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .crop-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    scroll-snap-align: start;
+    text-align: left;
+  }
+
+  .crop-card h3 {
+    margin-top: 0;
+    font-size: 1.4em;
+    color: #34495e;
+  }
+
+  .crop-card p {
+    margin: 6px 0;
+    font-size: 0.95em;
+    color: #555;
+  }
+
+  .highlight {
+    font-weight: bold;
+    color: #27ae60;
+  }
+
+  .label {
+    display: inline-block;
+    background-color: #2ecc71;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+  }
+
+  .button-group {
+    margin-top: 15px;
+  }
+
+  .button-group button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    margin-right: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+
+  .button-group button:hover {
+    background-color: #2980b9;
+  }
+   .slider-container {
+      width: 1300px;
+      height: 500px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      padding: 10px;
+    }
+
+    .policy-card {
+      scroll-snap-align: start;
+      background: #e6f2ff;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .policy-card:hover {
+      transform: scale(1.02);
+      background: #d0e7ff;
+    }
+
+    .policy-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #00529b;
+    }
+
+    .policy-desc {
+      font-size: 14px;
+      color: #333;
+    }
+     .slider-container {
+      width: 1300px;
+      height: 500px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      padding: 10px;
+    }
+
+    .tech-card {
+      scroll-snap-align: start;
+      background: #e8f5e9;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .tech-card:hover {
+      transform: scale(1.02);
+      background: #d0ebdd;
+    }
+
+    .tech-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+    .tech-desc {
+      font-size: 14px;
+      color: #333;
+    }
+    .slider-container {
+      width: 1300px;
+      height: 500px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      padding: 10px;
+    }
+
+    .ngo-card {
+      scroll-snap-align: start;
+      background: #fff8e1;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #fbc02d;
+      transition: transform 0.3s;
+    }
+
+    .ngo-card:hover {
+      transform: scale(1.02);
+      background: #fff3c0;
+    }
+
+    .ngo-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #f57f17;
+    }
+
+    .ngo-desc {
+      font-size: 14px;
+      color: #444;
+    }
+    
+  </style>
+</head>
+<body>
+  <div style="text-align: center;">
+ <h2 style="border-bottom: 2px solid black; display: inline-block;"> NGOs Supporting Indian Farmers</h2>
+ </div> 
+  <div class="slider-container">
+    <div class="ngo-card">
+      <div class="ngo-title">Navdanya</div>
+      <div class="ngo-desc">Promotes biodiversity, seed sovereignty, and organic farming across India.</div>
+    </div>
+    <div class="ngo-card">
+      <div class="ngo-title">BAIF Development Foundation</div>
+      <div class="ngo-desc">Supports sustainable rural development, livestock care, and afforestation.</div>
+    </div>
+    <div class="ngo-card">
+      <div class="ngo-title">Watershed Organization Trust (WOTR)</div>
+      <div class="ngo-desc">Focuses on climate-resilient farming, water conservation, and rural empowerment.</div>
+    </div>
+    <div class="ngo-card">
+      <div class="ngo-title">Deccan Development Society (DDS)</div>
+      <div class="ngo-desc">Empowers women farmers and promotes ecological agriculture in Telangana.</div>
+    </div>
+    <div class="ngo-card">
+      <div class="ngo-title">Swayam Shikshan Prayog (SSP)</div>
+      <div class="ngo-desc">Trains women in sustainable farming and agri-entrepreneurship across Maharashtra.</div>
+    </div>
+    <div class="ngo-card">
+      <div class="ngo-title">SFAC (Small Farmers Agribusiness Consortium)</div>
+      <div class="ngo-desc">Helps small farmers form producer organizations and access agribusiness markets.</div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Market Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 30px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2em;
+      color: #2c3e50;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.4em;
+      color: #34495e;
+    }
+
+    .price {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #27ae60;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      font-size: 0.95em;
+      margin-bottom: 6px;
+    }
+
+    .price-change {
+      font-size: 0.95em;
+      font-weight: bold;
+      color: #2980b9;
+      margin-top: 10px;
+    }
+
+    .link {
+      margin-top: 10px;
+      display: inline-block;
+      font-size: 0.9em;
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    .section {
+      margin-top: 50px;
+    }
+
+    .section h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .section li {
+      background: #fff;
+      padding: 10px 15px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .slider-section {
+    margin-top: 60px;
+    text-align: center;
+    width: 100vw;
+    /* height: 10vh; */
+  }
+
+  .slider-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+
+  .slider-container {
+    max-height: 350px;
+    display: inline-block;
+    width: 100vw;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .crop-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: left;
+    display: inline-block;
+
+  }
+
+  .crop-card h3 {
+    margin-top: 0;
+    font-size: 1.4em;
+    color: #34495e;
+  }
+
+  .crop-card p {
+    margin: 6px 0;
+    font-size: 0.95em;
+    color: #555;
+  }
+
+  .highlight {
+    font-weight: bold;
+    color: #27ae60;
+  }
+
+  .label {
+    display: inline-block;
+    background-color: #2ecc71;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+  }
+
+  .button-group {
+    margin-top: 15px;
+  }
+
+  .button-group button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    margin-right: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+
+  .button-group button:hover {
+    background-color: #2980b9;
+  }
+   .slider-container {
+      height: 500px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: black;
+      padding: 10px;
+    display: inline-block;
+      width: 100vw;
+
+
+    }
+
+    .policy-card {
+      scroll-snap-align: start;
+      background: #e6f2ff;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .policy-card:hover {
+      transform: scale(1.02);
+      background: #d0e7ff;
+    }
+
+    .policy-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #00529b;
+    }
+
+    .policy-desc {
+      font-size: 14px;
+      color: #333;
+    }
+     .slider-container {
+      width: 1300px;
+      height: 500px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      padding: 10px;
+    }
+
+    .tech-card {
+      scroll-snap-align: start;
+      background: #e8f5e9;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .tech-card:hover {
+      transform: scale(1.02);
+      background: #d0ebdd;
+    }
+
+    .tech-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+    .tech-desc {
+      font-size: 14px;
+      color: #333;
+    }
+    .slider-container {
+      width: 1300px;
+      height: 500px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      padding: 10px;
+    }
+
+    .ngo-card {
+      scroll-snap-align: start;
+      background: #fff8e1;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #fbc02d;
+      transition: transform 0.3s;
+    }
+
+    .ngo-card:hover {
+      transform: scale(1.02);
+      background: #fff3c0;
+    }
+
+    .ngo-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #f57f17;
+    }
+
+    .ngo-desc {
+      font-size: 14px;
+      color: #444;
+    }
+    
+  </style>
+</head>
+<body>
+<div class="slider-section">
+  <div style="text-align: center;">
+ <h2 style="border-bottom: 2px solid black; display: inline-block;">Best Season Crops</h2>
+ </div> 
+  <div class="slider-container">
+
+    <div class="crop-card">
+      <div class="label">Excellent</div>
+      <h3>Rice (Kharif Season)</h3>
+      <p><span class="highlight">Soil Type:</span> Clay</p>
+      <p><span class="highlight">Water Need:</span> High</p>
+      <p><span class="highlight">Expected Yield:</span> 45-50 quintals/acre</p>
+      <p><span class="highlight">Duration:</span> 120-150 days</p>
+      <p><span class="highlight">Investment:</span> ₹25,000-30,000/acre</p>
+      <p><span class="highlight">Market Demand:</span> High</p>
+      <p><strong>Why This Crop:</strong> Favorable monsoon, high prices, stable moisture, good irrigation</p>
+      <p><strong>Farming Tips:</strong> Use certified seeds, apply organic fertilizers, monitor pests, ensure drainage</p>
+      <div class="button-group">
+        <button>Get Detailed Plan</button>
+        <button>Compare with Others</button>
+      </div>
+    </div>
+
+    <div class="crop-card">
+      <div class="label">Very Good</div>
+      <h3>Maize (Kharif Season)</h3>
+      <p><span class="highlight">Soil Type:</span> Sandy Loam</p>
+      <p><span class="highlight">Water Need:</span> Medium</p>
+      <p><span class="highlight">Expected Yield:</span> 40–45 quintals/acre</p>
+      <p><span class="highlight">Duration:</span> 90–110 days</p>
+      <p><span class="highlight">Investment:</span> ₹18,000–22,000/acre</p>
+      <p><span class="highlight">Market Demand:</span> High</p>
+      <p><strong>Why This Crop:</strong> Short duration, poultry feed demand, good prices, less water</p>
+      <p><strong>Farming Tips:</strong> Use hybrid varieties, split nitrogen, control stem borer, harvest at night maturity</p>
+      <div class="button-group">
+        <button>Get Detailed Plan</button>
+        <button>Compare with Others</button>
+      </div>
+    </div>
+
+    <div class="crop-card">
+      <div class="label" style="background-color:#f39c12;">Moderate</div>
+      <h3>Sugarcane (Annual)</h3>
+      <p><span class="highlight">Soil Type:</span> Clay Loam</p>
+      <p><span class="highlight">Water Need:</span> Very High</p>
+      <p><span class="highlight">Expected Yield:</span> 400-500 quintals/acre</p>
+      <p><span class="highlight">Duration:</span> 365 days</p>
+      <p><span class="highlight">Investment:</span> ₹40,000-50,000/acre</p>
+      <p><span class="highlight">Market Demand:</span> Stable</p>
+      <p><strong>Why This Crop:</strong> Long-term income, sugar mill contracts, good for clay soils, ratoon crops</p>
+      <p><strong>Farming Tips:</strong> Ensure water supply, use disease-free setts, apply organic matter, control red rot</p>
+      <div class="button-group">
+        <button>Get Detailed Plan</button>
+        <button>Compare with Others</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div style="text-align: center;">
+ <h2 style="border-bottom: 2px solid black; display: inline-block;">Government Policies for Farmers</h2>
+ </div> 
+ <div class="slider-container">
+    <div class="policy-card">
+      <div class="policy-title">PM-KISAN</div>
+      <div class="policy-desc">Provides ₹6,000/year to farmers in three installments to support income.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-title">PMFBY</div>
+      <div class="policy-desc">Crop insurance scheme to protect farmers against natural calamities.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-title">e-NAM</div>
+      <div class="policy-desc">National Agriculture Market for transparent online trading of produce.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-title">PMKSY</div>
+      <div class="policy-desc">Improves irrigation coverage and water use efficiency across farms.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-title">Soil Health Card</div>
+      <div class="policy-desc">Provides soil nutrient status to help farmers optimize fertilizer use.</div>
+    </div>
+  </div>
+  <div style="text-align: center;">
+ <h2 style="border-bottom: 2px solid black; display: inline-block;">Technologies Revolutionizing Farming</h2>
+ </div> 
+  <div class="slider-container">
+    <div class="tech-card">
+      <div class="tech-title">Precision Agriculture</div>
+      <div class="tech-desc">Uses GPS, sensors, and data analytics to optimize crop yields and reduce resource waste.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-title">Smart Irrigation Systems</div>
+      <div class="tech-desc">Automated water delivery based on soil moisture and weather forecasts to conserve water.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-title">Drones for Crop Monitoring</div>
+      <div class="tech-desc">Capture aerial imagery to assess crop health, detect pests, and guide spraying operations.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-title">IoT-Enabled Greenhouses</div>
+      <div class="tech-desc">Sensors monitor temperature, humidity, and light to maintain optimal growing conditions.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-title">Blockchain in Agri Supply Chain</div>
+      <div class="tech-desc">Ensures transparency and traceability from farm to market, reducing fraud and inefficiency.</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-title">Hydroponics & Vertical Farming</div>
+      <div class="tech-desc">Soil-less farming methods that save space and water, ideal for urban agriculture.</div>
+    </div>
+  </div>
+</body>
+</html>
